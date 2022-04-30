@@ -15,6 +15,7 @@ import java.util.Map;
 /**
  * @author tenlee
  * @date 2020/5/28
+ * @summary 入口类
  */
 public class AnalysisHaoPlugin extends Plugin implements AnalysisPlugin {
 

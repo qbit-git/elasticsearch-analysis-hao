@@ -117,10 +117,16 @@ public class Dictionary {
         } catch (IOException e) {
             logger.error("base dictionary load fail:{}", e.getMessage());
         }
+        logger.info("hao dic load base_dictionary end. wordFreqMap size: {}", wordFreqMap.size());
 
-        
+        logger.info("hao dic start to loadCustomerDictionary ... ");
         this.loadCustomerDictionary(wordFreqMap);
+        logger.info("hao dic loadCustomerDictionary end. wordFreqMap size: {}", wordFreqMap.size());
+
+        logger.info("hao dic start to loadRemoteDictionary ... ");
         this.loadRemoteDictionary(wordFreqMap);
+        logger.info("hao dic loadRemoteDictionary end. wordFreqMap size: {}", wordFreqMap.size());
+
         this.logTotal = Math.log(total);
         logger.info("hao dic start to buildTrie ... ");
         this.buildTrie(wordFreqMap);
@@ -153,6 +159,7 @@ public class Dictionary {
         // 远程词库有更新,需要重新加载词典，并修改last_modified,eTags
         Monitor.lastModified = response.header("Last-Modified");
         Monitor.eTags = response.header("ETag");
+        logger.info("Monitor.lastModified: {}, Monitor.eTags: {}", Monitor.lastModified, Monitor.eTags);
         try (BufferedReader in = new BufferedReader(response.body().charStream())) {
             String line;
             while ((line = in.readLine()) != null) {
