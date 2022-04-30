@@ -78,7 +78,7 @@ public class Dictionary {
                                     cfg.getSyncDicPeriodTime(), TimeUnit.SECONDS);
                             }
                         }
-                        logger.info("dic init ok");
+                        logger.info("hao dic init ok");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -99,6 +99,7 @@ public class Dictionary {
      * 读取META_WORDS_FILE，里边的词不再做更细颗粒度的分割
      */
     private void loadDict() throws Exception {
+        logger.info("hao dic start to loadDict ... ");
         this.total = 0;
         TreeMap<String, Double> wordFreqMap = new TreeMap<>();
         try (InputStream is = new FileInputStream(configuration.getBaseDictionaryFile());
@@ -117,10 +118,14 @@ public class Dictionary {
             logger.error("base dictionary load fail:{}", e.getMessage());
         }
 
+        
         this.loadCustomerDictionary(wordFreqMap);
         this.loadRemoteDictionary(wordFreqMap);
         this.logTotal = Math.log(total);
+        logger.info("hao dic start to buildTrie ... ");
         this.buildTrie(wordFreqMap);
+        logger.info("hao dic buildTrie end.");
+        logger.info("hao dic loadDict end.");
     }
 
     /**
