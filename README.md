@@ -18,7 +18,7 @@ QQ交流群：743457803
 - 支持自定义长度分词，适合短文本下的人名等识别。
 > 根据空格标点符号字母数字等分隔后的汉字文本长度`<=autoWordLength`会自动识别为一个词语。
   
-- 支持emoji搜索 
+- 支持emoji搜索
 
 - *相比IK，比IK更智能，更准确，更快。* 更快是参考[`AC自动机+双数组`](https://github.com/hankcs/AhoCorasickDoubleArrayTrie)分词算法
 > 比如IK `ik_max_word`是穷举所有可能词，导致搜索一些不相关的也会被搜到。
